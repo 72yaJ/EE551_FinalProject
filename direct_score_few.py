@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 '''
-File Name: direct_score.py
-Edit Time: 20180414
+File Name: direct_score_few.py
+Edit Time: 20180417 1624
 
 Content:
     get direct score of track of album, artist
@@ -18,8 +18,8 @@ def main():
     dataDir = '/home/z/Documents/python/EE627_project/data/data_in_matrixForm/'
     file_name_test = dataDir + 'testTrack_hierarchy.txt'
     file_name_train = dataDir + 'trainIdx2_matrix.txt'
-    output_file = dataDir + 'direct_score_AAG.txt'  # direct score of track of 
-                                                    # Album, Artist and Genre
+    output_file = dataDir + 'direct_score_AA.txt'  # direct score of track of 
+                                                    # Album, Artist
     fTest = open(file_name_test, 'r')
     fTrain = open(file_name_train, 'r')
     Trainline = fTrain.readline()
@@ -29,9 +29,6 @@ def main():
     albumID_vec = [0]*6
     artistID_vec = [0]*6
     lastUserID = -1
-
-#    user_rating_inTrain = np.zeros(shape = (6,3))
-    user_rating_inTrain = np.full((6, 2, ), np.nan)
 
     for line in fTest:  # find test userID, trackID, albumID
         arr_test = line.strip().split('|')
@@ -43,7 +40,6 @@ def main():
         if userID != lastUserID:    #change user
             ii = 0
             user_rating_inTrain = np.full((6, 2, ), np.nan)
-#            user_rating_inTrain = np.zeros(shape = (6,3))
 
         trackID_vec[ii] = trackID   # ID for 6 tracks
         albumID_vec[ii] = albumID
@@ -57,27 +53,26 @@ def main():
                 trainUserID = arr_train[0]
                 trainItemID = arr_train[1]
                 trainRating = arr_train[2]
-                Trainline = fTrain.readline()
 
-#                pdb.set_trace() # debug
-
-                if trainUserID < userID:
-                    continue
-                if trainUserID == userID:   # find same user
-
-#                    pdb.set_trace() # debug
-
-                    for nn in range(0, 6):  # get the score
-                        if trainItemID == albumID_vec[nn]:  
-                            user_rating_inTrain[nn, 0] = trainRating    # score of album
-                        if trainItemID == artistID_vec[nn]:
-                            user_rating_inTrain[nn, 1] = trainRating    # score of artist
-                if trainUserID > userID:
+                if int(trainUserID) > int(userID):
                     for nn in range(0, 6):
                         outStr = str(userID) + '|' + str(trackID_vec[nn])+ '|' \
                         + str(user_rating_inTrain[nn,0]) + '|' + str(user_rating_inTrain[nn, 1])
                         fOut.write(outStr + '\n')
                     break
+
+                Trainline = fTrain.readline()
+
+#                pdb.set_trace() # debug
+
+                if int(trainUserID) < int(userID):
+                    continue
+                if trainUserID == userID:   # find same user
+                    for nn in range(0, 6):  # get the score
+                        if trainItemID == albumID_vec[nn]:  
+                            user_rating_inTrain[nn, 0] = trainRating    # score of album
+                        if trainItemID == artistID_vec[nn]:
+                            user_rating_inTrain[nn, 1] = trainRating    # score of artist
     fTest.close()
     fTrain.close()
 
