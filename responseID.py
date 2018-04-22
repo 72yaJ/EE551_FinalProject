@@ -2,14 +2,14 @@
 # coding: utf-8
 '''
 File Name: responseID.py
-Edit Time: 20180417 1644
+Edit Time: 20180419 1634
 
 Content:
     get training data ID for response
     userID, trackID, albumID, artistID, genreID
     
 Version:
-    1.0
+    1.1
 '''
 
 import pdb # debug module
@@ -27,8 +27,10 @@ def main():
     output_file = dataDir + title
     fTrack = open(file_name_track, 'r')
     fTrain = open(file_name_train, 'r')
-#    Trackline = fTrack.readline()
     fOut = open(output_file, 'w')
+
+
+#    Trackline = fTrack.readline()
 
     lastUserID = -1
 
@@ -47,53 +49,24 @@ def main():
         if userID != lastUserID:
             fTrack.seek(0)
             Trackline = fTrack.readline()
-        lastUserID = userID
 
-#        fTrack.seek(0)
-#        Trackline = fTrack.readline()
         while(Trackline):
             arr_track = Trackline.strip().split('|')
                 # arr_track[0] trackID
                 # arr_track[1] traclAlbumID
                 # arr_track[2] trackArtistID
                 # arr_track[3:] trackGenreID
-            
-#            if arr_track[0]=='28340':
-#               pdb.set_trace() #debug
-
-#            if arr_train[0]=='3':
-#                pdb.set_trace() #debug
-
-#            if arr_train[1]=='211' and arr_train[0]=='3':
-#                pdb.set_trace() #debug
-
-#            pdb.set_trace()    # debug
-#            print 'trackID:', arr_track[0]
-#            print 'trainItemID:', arr_train[1]
-
-#            if arr_track[0] == trainItemID:
-
-            if arr_track[0] > arr_train[1]:
+            if int(arr_track[0]) > int(arr_train[1]):
                 break
-
             if arr_track[0] == arr_train[1]:
-
-#                pdb.set_trace()    # debug
-
                 outStr = str(arr_train[0])+'|'+Trackline
-#                y = size(arr_track[:])
-#                for mm in xrange(0,y):
-#                    outStr = outStr+arr_track[mm]+'|'                        
                 fOut.write(outStr)
                 break
-
-#            if int(arr_track[0]) > int(arr_train[1]):
-#                pdb.set_trace() # debug
-#                break
             Trackline = fTrack.readline()
-
             if int(arr_track[0]) < int(arr_train[1]):
                 continue
+
+        lastUserID = userID
 
     fTrack.close()
     fTrain.close()

@@ -41,9 +41,6 @@ def main():
         arr_test = line.strip().split('|')
 
         userID = arr_test[0]
-#        trackID = arr_test[1]
-
-#        pdb.set_trace() # debug
 
         if userID != lastUserID:    #change user
             num = ii
@@ -68,9 +65,9 @@ def main():
 
                 if int(trainUserID) > int(lastUserID):
                     for nn in xrange(0, num):
-                        outStr = str(lastUserID)+'|'
+                        outStr = str(lastUserID)
                         for mm in user_rating_inTrain[nn][1:]:
-                            outStr = outStr+str(mm)+'|'
+                            outStr = outStr+'|'+str(mm)
                         fOut.write(outStr + '\n')
                     break
 
@@ -97,6 +94,22 @@ def main():
         ii = ii + 1
         lastUserID = userID
 
+
+
+#    Trainline = fTrain.readline()
+    num = ii
+    user_rating_inTrain = [list([]) for i in xrange(num)]
+
+#            pdb.set_trace()
+
+    for y in xrange(0, num):
+        user_rating_inTrain[y][:] = ['None']*size(testID[y])
+        user_rating_inTrain[y][0] = testID[y][0]
+            # user_rating_inTrain[y][0] userID
+            # user_rating_inTrain[y][1] track_score
+            # user_rating_inTrain[y][2] album_score
+            # user_rating_inTrain[y][3] artist_score
+            # user_rating_inTrain[y][4:] genre_score   
     while (Trainline):
         arr_train = Trainline.strip().split('|')    # try to find the same info in train
         trainUserID = arr_train[0]
@@ -105,9 +118,9 @@ def main():
 
         if int(trainUserID) > int(lastUserID):
             for nn in xrange(0, num):
-                outStr = str(lastUserID)+'|'
+                outStr = str(lastUserID)
                 for mm in user_rating_inTrain[nn][1:]:
-                    outStr = outStr+str(mm)+'|'
+                    outStr = outStr+'|'+str(mm)
                 fOut.write(outStr + '\n')
             break
 
