@@ -1,20 +1,21 @@
 #!/usr/bin/env python
 # coding: utf-8
 '''
-File Name: cal_direct_score.py
-Edit Time: 20180422 2011
+File Name: cal_direct_score_1.2.py
+Edit Time: 20180422 2345
 
 Content:
     calculate all direct score to get signle score
 
-    1.1
-    file_in: di_AAGsAltrmeanAralmeanArtrmean
+    1.2
+    file_in: di_AAGsAltrmAralmArtrmTrmAlmArmGem
             userID trackID...
             albumScore artistScore genreMeanScore...
-            tracksInOneAlbumMean albumsInOneArtistMean tracksInOneArtistMean
+            tracksInOneAlbumMean albumsInOneArtistMean tracksInOneArtistMean...
+            trackMean albumMean artistMean genreMean
     
 Version:
-    1.1
+    1.2
 '''
 
 import pdb # debug module
@@ -24,7 +25,7 @@ from time import gmtime, strftime
 def main():
     
     dataDir = '/home/z/Documents/python/EE627_project/data/data_in_matrixForm/'
-    file_in = dataDir + 'di_AAGsAltrmeanAralmeanArtrmean.txt'
+    file_in = dataDir + 'di_AAGsAltrmAralmArtrmTrmAlmArmGem.txt'
     t = strftime('%Y%m%d%H%M', gmtime())
     title = 'direct_score_result'+t+'.txt'
     file_out = dataDir + title
@@ -41,6 +42,11 @@ def main():
     w_TrInAr = w_es*(w_ar-w_AlInAr) #the weight of mean track score in one artist
             # w_TrInAl/w_es = w_al
             # (w_AlInAr+w_TrInAr)/w_es = w_ar
+    w_es_mean = 1 # the weight of mean estimate
+    w_tr_mean = w_es_mean*1 # the weight of track mean
+    w_al_mean = w_es_mean*w_al  # the weight of album mean
+    w_ar_mean = w_es_mean*w_ar  # the weight of artist mean
+    w_ge_mean = w_es_mean*w_ge  # the weight of genre mean
 
     d_norm_all = w_al+w_ar+w_ge # denominator of normalization of all
     d_norm_al = w_al+w_TrInAl
@@ -67,6 +73,10 @@ def main():
             # arr_in[5] TrInAl
             # arr_in[6] AlInAr
             # arr_in[7] TrInAr
+            # arr_in[8] TrackMean
+            # arr_in[9] AlbumMean
+            # arr_in[10] ArtistMean
+            # arr_in[11] GenreMean
 
 #        if arr_in[0] == '32':
 #            pdb.set_trace()
@@ -81,6 +91,9 @@ def main():
         if n_norm_al != 0: 
             al_score_all = (al_score+TrInAl_score)/(n_norm_al/d_norm_al)
             n_norm_all = n_norm_all+w_al
+        if n_norm_all == 0 and arr_in[9] != 'None':
+            al_score_all = w_al_mean*float(arr_in[9])
+            n_norm_all = n_norm_all+w_al
 
         if arr_in[3] != 'None':
             ar_score = w_ar*float(arr_in[3])
@@ -94,11 +107,22 @@ def main():
         if n_norm_ar != 0:
             ar_score_all = (ar_score+AlInAr_score+TrInAr_score)/(n_norm_ar/d_norm_ar)
             n_norm_all = n_norm_all+w_ar
+        if n_norm_all == 0 and arr_in[10] != 'None':
+            ar_score_all = w_ar_mean*float(arr_in[10])
+            n_norm_all = n_norm_all+w_ar
 
         if arr_in[4] != 'None':
             ge_score = w_ge*float(arr_in[4])
             n_norm_all = n_norm_all+w_ge
+        if n_norm_all == 0 and arr_in[11] != 'None':
+            ge_score_all = w_ar_mean*float(arr_in[11])
+            n_norm_all = n_norm_all+w_ar
 
+        if n_norm_all == 0 and arr_in[8] != 'None':
+            score = w_tr_mean*float(arr_in[8])
+            outStr = arr_in[0]+'|'+str(score)
+            f_out.write(outStr + '\n')
+            continue
         if n_norm_all == 0:
             outStr = arr_in[0]+'|None'
             f_out.write(outStr + '\n')

@@ -12,7 +12,7 @@ Version:
 '''
 
 import pdb # debug module
-from numpy import size
+import numpy as np
 from time import gmtime, strftime
 
 def get_median(data):
@@ -46,16 +46,39 @@ def main():
         if ii == 6:
             ii = 0
             med = get_median(buff)
+#            for jj in xrange(0, 6):
+#                if buff[jj] > med:
+##                    outStr = arr_in[0]+'|'+'1\n'
+#                    outStr = '1\n'
+#                    f_out.write(outStr)
+#                if buff[jj] < med:
+##                    outStr = arr_in[0]+'|'+'0\n'
+#                    outStr = '0\n'
+#                    f_out.write(outStr)
+#                if buff[jj] == med:
+#                    outStr = 'None\n'
+#                    f_out.write(outStr)
+#            buff = []
+
+            n = 0
+            buff1 = np.zeros(6)
             for jj in xrange(0, 6):
                 if buff[jj] > med:
-#                    outStr = arr_in[0]+'|'+'1\n'
-                    outStr = '1\n'
-                    f_out.write(outStr)
+                    buff1[jj] = 1
+                    n = n+1
                 else:
-#                    outStr = arr_in[0]+'|'+'0\n'
-                    outStr = '0\n'
-                    f_out.write(outStr)
+                    buff[jj] = 0
+            for m in xrange(0, 6):
+                if n == 3:
+                    break
+                if buff1[m] != 1:
+                    buff1[m] = 1
+                    n = n+1
+            for item in buff1[:]:
+                outStr = str(int(item))+'\n'
+                f_out.write(outStr)
             buff = []
+
     f_in.close()
 
 if __name__ == '__main__':
