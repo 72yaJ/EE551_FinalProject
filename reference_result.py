@@ -60,7 +60,8 @@ def main():
 #                    f_out.write(outStr)
 #            buff = []
 
-            n = 0
+
+            n = 0 # main 0
             buff1 = np.zeros(6)
             for jj in xrange(0, 6):
                 if buff[jj] > med:
@@ -77,7 +78,26 @@ def main():
             for item in buff1[:]:
                 outStr = str(int(item))+'\n'
                 f_out.write(outStr)
-            buff = []
+            buff = []    
+
+#            n = 0 # main 1
+#            buff1 = np.ones(6)
+#            for jj in xrange(0, 6):
+#                if buff[jj] < med:
+#                    buff1[jj] = 0
+#                    n = n+1
+#                else:
+#                    buff[jj] = 1
+#            for m in xrange(0, 6):
+#                if n == 3:
+#                    break
+#                if buff1[m] != 0:
+#                    buff1[m] = 0
+#                    n = n+1
+#            for item in buff1[:]:
+#                outStr = str(int(item))+'\n'
+#                f_out.write(outStr)
+#            buff = []
 
     f_in.close()
 
