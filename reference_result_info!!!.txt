@@ -1,0 +1,129 @@
+referece_result_8651.txt
+:
+in cal_direct_score_1.2.py
+albumScore artistScore genreMeanScore...
+tracksInOneAlbumMean albumsInOneArtistMean tracksInOneArtistMean...
+trackMean albumMean artistMean genreMean
+
+    w_al = 1 # the weight of album
+    w_ar = 0.75 # the weight of artist
+    w_ge = 0.25    # the weight of genre
+    w_es = 0.9 # the weight of estimate
+    w_TrInAl = w_es*w_al #the weight of mean track score in one album
+    w_AlInAr = w_es*0.5 #the weight of mean album score in one artist
+    w_TrInAr = w_es*(w_ar-w_AlInAr) #the weight of mean track score in one artist
+            # w_TrInAl/w_es = w_al
+            # (w_AlInAr+w_TrInAr)/w_es = w_ar
+    w_es_mean = 1 # the weight of mean estimate
+    w_tr_mean = w_es_mean*1 # the weight of track mean
+    w_al_mean = w_es_mean*w_al  # the weight of album mean
+    w_ar_mean = w_es_mean*w_ar  # the weight of artist mean
+    w_ge_mean = w_es_mean*w_ge  # the weight of genre mean
+
+in reference_result.py
+buff1 = np.zeros(6) # main 1
+====================================================================================
+referece_result_8323.txt
+:
+in cal_direct_score_1.2.py
+albumScore artistScore genreMeanScore...
+tracksInOneAlbumMean albumsInOneArtistMean tracksInOneArtistMean...
+trackMean albumMean artistMean genreMean
+
+    w_al = 1 # the weight of album
+    w_ar = 0.75 # the weight of artist
+    w_ge = 0.25    # the weight of genre
+    w_es = 0.9 # the weight of estimate
+    w_TrInAl = w_es*w_al #the weight of mean track score in one album
+    w_AlInAr = w_es*0.5 #the weight of mean album score in one artist
+    w_TrInAr = w_es*(w_ar-w_AlInAr) #the weight of mean track score in one artist
+            # w_TrInAl/w_es = w_al
+            # (w_AlInAr+w_TrInAr)/w_es = w_ar
+    w_es_mean = 1 # the weight of mean estimate
+    w_tr_mean = w_es_mean*1 # the weight of track mean
+    w_al_mean = w_es_mean*w_al  # the weight of album mean
+    w_ar_mean = w_es_mean*w_ar  # the weight of artist mean
+    w_ge_mean = w_es_mean*w_ge  # the weight of genre mean
+
+in reference_result.py
+buff1 = np.ones(6) # main 0
+=========================================================================================
+referece_result_8598.txt
+:
+in cal_direct_score.py
+albumScore artistScore genreMeanScore...
+tracksInOneAlbumMean albumsInOneArtistMean tracksInOneArtistMean
+    w_al = 1 # the weight of album
+    w_ar = 0.75 # the weight of artist
+    w_ge = 0.25    # the weight of genre
+    w_es = 0.9 # the weight of estimate
+    w_TrInAl = w_es*w_al #the weight of mean track score in one album
+    w_AlInAr = w_es*0.5 #the weight of mean album score in one artist
+    w_TrInAr = w_es*(w_ar-w_AlInAr) #the weight of mean track score in one artist
+            # w_TrInAl/w_es = w_al
+            # (w_AlInAr+w_TrInAr)/w_es = w_ar
+
+in reference_result.py
+buff1 = np.zeros(6) # main 1
+========================================================================================
+referece_result_8363.txt
+:
+in cal_direct_score.py
+albumScore artistScore genreMeanScore...
+tracksInOneAlbumMean albumsInOneArtistMean tracksInOneArtistMean
+    w_al = 1 # the weight of album
+    w_ar = 0.75 # the weight of artist
+    w_ge = 0.25    # the weight of genre
+    w_es = 0.9 # the weight of estimate
+    w_TrInAl = w_es*w_al #the weight of mean track score in one album
+    w_AlInAr = w_es*0.5 #the weight of mean album score in one artist
+    w_TrInAr = w_es*(w_ar-w_AlInAr) #the weight of mean track score in one artist
+            # w_TrInAl/w_es = w_al
+            # (w_AlInAr+w_TrInAr)/w_es = w_ar
+
+in reference_result.py
+buff1 = np.ones(6) # main 0
+========================================================================================
+referece_result_8699.txt
+:
+combine 8651, 8598, 8363, 8323
+
+=======================================================================================
+referece_result_6696.txt
+:
+matrix factorization to estimate track score
+mse = 9.6 rank=120, numIter = 30
+have 86 empty data because there is no info in user_track list
+=======================================================================================
+referece_result_6627.txt
+:
+matrix factorization to estimate track score
+mse = 17.5 rank=100, numIter = 30
+have 86 empty data because there is no info in user_track list
+==========================================================================================
+referece_result_8700.txt
+:
+combine 8651, 8598, 8363, 8323, 8699, 6696, 6627
+
+====================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
