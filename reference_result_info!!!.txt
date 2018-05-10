@@ -106,15 +106,154 @@ referece_result_8700.txt
 combine 8651, 8598, 8363, 8323, 8699, 6696, 6627
 
 ====================================================================
+referece_result_8069.txt
+:
+add matrix factorization to estimate track score
+mse = 9.6 rank=120, numIter = 30
 
+cal_direct_score_1.3
+    w_al = 1 # the weight of album
+    w_ar = 0.75 # the weight of artist
+    w_ge = 0.5  # the weight of genre
+    w_tr = 0.25 # the weight of track
 
+    w_al_sc = 1 # the weight of direct album score, arr_in[2]
+    w_al_trinal = 0.5 # the weight of track in album, arr_in[5]
+    w_al_alm = 0.25 # the weight of all album mean, arr_in[9]
 
+    w_ar_sc = 1 # the wwight of direct artist score, arr_in[3]
+    w_ar_alinar = 0.3 # the weight of album in artist, arr_in[6]
+    w_ar_trinar = 0.2 # the weight of track in artist, arr_in[7]
+    w_ar_ares = w_ar_alinar+w_ar_trinar # the weight of artist estimated by items in artist
+    w_ar_arm = 0.25 # the weight of all artist mean, arr_in[10]
 
+    w_ge_sc = 1 # the weight of direct genre score, arr_in[4]
+    w_ge_gem = 0.25 # the weight of all genre mean, arr_in[11]
 
+    w_tr_trm = 0.25 # the weight of all track mean, arr_in[8]
+    w_tr_tre = 0.1 # the weight of track estimated by matrix factorization, arr_in[12]
 
+mistake coefficients!!!
+==========================================================================================
+referece_result_8140.txt
+:
+add matrix factorization to estimate track score
+mse = 9.6 rank=120, numIter = 30
 
+cal_direct_score_1.3
+    w_al = 1 # the weight of album
+    w_ar = 0.75 # the weight of artist
+    w_ge = 0.5  # the weight of genre
+    w_tr = 0.25 # the weight of track
 
+    w_al_sc = 1 # the weight of direct album score, arr_in[2]
+    w_al_trinal = 0.5 # the weight of track in album, arr_in[5]
+    w_al_alm = 0.25 # the weight of all album mean, arr_in[9]
 
+    w_ar_sc = 1 # the wwight of direct artist score, arr_in[3]
+    w_ar_alinar = 0.3 # the weight of album in artist, arr_in[6]
+    w_ar_trinar = 0.2 # the weight of track in artist, arr_in[7]
+    w_ar_ares = w_ar_alinar+w_ar_trinar # the weight of artist estimated by items in artist
+    w_ar_arm = 0.25 # the weight of all artist mean, arr_in[10]
+
+    w_ge_sc = 1 # the weight of direct genre score, arr_in[4]
+    w_ge_gem = 0.25 # the weight of all genre mean, arr_in[11]
+
+    w_tr_trm = 0.25 # the weight of all track mean, arr_in[8]
+    w_tr_tre = 0.1 # the weight of track estimated by matrix factorization, arr_in[12]
+
+==========================================================================================
+referece_result_7952.txt
+:
+add matrix factorization to estimate track score
+mse = 9.6 rank=120, numIter = 30
+
+cal_direct_score_1.3
+    w_al = 1 # the weight of album
+    w_ar = 0.75 # the weight of artist
+    w_ge = 0.5  # the weight of genre
+    w_tr = 0.0 # the weight of track
+
+    w_al_sc = 1 # the weight of direct album score, arr_in[2]
+    w_al_trinal = 0.5 # the weight of track in album, arr_in[5]
+    w_al_alm = 0.25 # the weight of all album mean, arr_in[9]
+
+    w_ar_sc = 1 # the wwight of direct artist score, arr_in[3]
+    w_ar_alinar = 0.3 # the weight of album in artist, arr_in[6]
+    w_ar_trinar = 0.2 # the weight of track in artist, arr_in[7]
+    w_ar_ares = w_ar_alinar+w_ar_trinar # the weight of artist estimated by items in artist
+    w_ar_arm = 0.25 # the weight of all artist mean, arr_in[10]
+
+    w_ge_sc = 1 # the weight of direct genre score, arr_in[4]
+    w_ge_gem = 0.25 # the weight of all genre mean, arr_in[11]
+
+    w_tr_trm = 0.25 # the weight of all track mean, arr_in[8]
+    w_tr_tre = 0.1 # the weight of track estimated by matrix factorization, arr_in[12]
+=====================================================================================
+referece_result_8651_05101432.txt
+:
+in cal_direct_score_1.4.py
+albumScore artistScore genreMeanScore...
+tracksInOneAlbumMean albumsInOneArtistMean tracksInOneArtistMean...
+trackMean albumMean artistMean genreMean
+
+    w_al = 1 # the weight of album
+    w_ar = 0.75 # the weight of artist
+    w_ge = 0.25    # the weight of genre
+    w_es = 0.9 # the weight of estimate
+    w_TrInAl = w_es*w_al #the weight of mean track score in one album
+    w_AlInAr = w_es*0.5 #the weight of mean album score in one artist
+    w_TrInAr = w_es*(w_ar-w_AlInAr) #the weight of mean track score in one artist
+            # w_TrInAl/w_es = w_al
+            # (w_AlInAr+w_TrInAr)/w_es = w_ar
+    w_es_mean = 1 # the weight of mean estimate
+    w_tr_mean = w_es_mean*1 # the weight of track mean
+    w_al_mean = w_es_mean*w_al  # the weight of album mean
+    w_ar_mean = w_es_mean*w_ar  # the weight of artist mean
+    w_ge_mean = w_es_mean*w_ge  # the weight of genre mean
+change some errors in codes
+========================================================================================
+referece_result_8655.txt
+:
+in cal_direct_score_1.4.py
+albumScore artistScore genreMeanScore...
+tracksInOneAlbumMean albumsInOneArtistMean tracksInOneArtistMean...
+trackMean albumMean artistMean genreMean...
+trackEstByMF
+
+    w_al = 1 # the weight of album
+    w_ar = 0.75 # the weight of artist
+    w_ge = 0.25    # the weight of genre
+    w_es = 0.9 # the weight of estimate
+    w_TrInAl = w_es*w_al #the weight of mean track score in one album
+    w_AlInAr = w_es*0.5 #the weight of mean album score in one artist
+    w_TrInAr = w_es*(w_ar-w_AlInAr) #the weight of mean track score in one artist
+            # w_TrInAl/w_es = w_al
+            # (w_AlInAr+w_TrInAr)/w_es = w_ar
+    w_es_mean = 1 # the weight of mean estimate
+    w_tr_mean = w_es_mean*1 # the weight of track mean
+    w_al_mean = w_es_mean*w_al  # the weight of album mean
+    w_ar_mean = w_es_mean*w_ar  # the weight of artist mean
+    w_ge_mean = w_es_mean*w_ge  # the weight of genre mean
+
+    w_tre = 0.25
+======================================================================================
+referece_result_7872.txt
+:
+combine 8651, 8598, 8363, 8323, 8699, 6696, 6627, 5001, 8700, 8069, 8140, 7952, 8651, 8655
+
+have some problem, should not be worse!!!
+result is adding repeat data
+====================================================================
+referece_result_8700_05101520.txt
+:
+combine 8651, 8598, 8363, 8323, 8699, 6696, 6627, 5001, 8700
+=======================================================================
+referece_result_8855.txt
+:
+combine 8651, 8598, 8363, 8323, 8699, 6696, 6627, 5001, 8700...
+	8069, 8140, 7952, 8651, 8655, 7872, 8700
+========================================================================
 
 
 
