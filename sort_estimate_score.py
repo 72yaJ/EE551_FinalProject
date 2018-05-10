@@ -6,9 +6,10 @@ Edit Time: 20180508 1703
 
 Content:
     sort the estimate score in right order
+    output is userID itemSc
     
 Version:
-    1.0
+    1.1
 '''
 
 import pdb # debug module
@@ -54,12 +55,13 @@ def main():
 
         arr_in = line.strip().split('|')
         ii = ii+1
-        out = [arr_in[0], arr_in[1], 'None']
+#        out = [arr_in[0], arr_in[1], 'None']
+        out = [arr_in[0], 'None']
         for item in buff[:]:
             if item[0] == arr_in[0] and item[1] == arr_in[1]:
-                out[2] = float(item[2])
+                out[1] = float(item[2])
                 break
-        outStr = str(out[0])+'|'+str(out[1])+'|'+str(out[2])+'\n'
+        outStr = str(out[0])+'|'+str(out[1])+'\n'
         f_out.write(outStr)
 
     f1_in.close()

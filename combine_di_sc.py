@@ -2,7 +2,7 @@
 # coding: utf-8
 '''
 File Name: combine_di_sc.py
-Edit Time: 20180508 1250
+Edit Time: 20180509 1246
 
 Content:
     combine all the result to get a better one
@@ -29,6 +29,19 @@ def main():
     file2 = dataDir + 'reference_result_8598.txt'
     file3 = dataDir + 'reference_result_8363.txt'
     file4 = dataDir + 'reference_result_8323.txt'
+    file5 = dataDir + 'reference_result_8699.txt'
+    file6 = dataDir + 'reference_result_6696.txt'
+    file7 = dataDir + 'reference_result_6627.txt'
+    file8 = dataDir + 'reference_result_5001.txt'
+    file9 = dataDir + 'reference_result_8700.txt'
+    file10 = dataDir + 'reference_result_8069.txt'
+    file11 = dataDir + 'reference_result_8140.txt'
+    file12 = dataDir + 'reference_result_7952.txt'
+    file13 = dataDir + 'reference_result_8651_05101432.txt'
+    file14 = dataDir + 'reference_result_8655.txt'
+    file15 = dataDir + 'reference_result_7872.txt'
+    file16 = dataDir + 'reference_result_8700_05101520.txt'
+    
 
     t = strftime('%Y%m%d%H%M', gmtime())
     title = 'reference_result'+t+'.txt'
@@ -38,11 +51,23 @@ def main():
     f2_in = open(file2, 'r')
     f3_in = open(file3, 'r')
     f4_in = open(file4, 'r')
+    f5_in = open(file5, 'r')
+    f6_in = open(file6, 'r')
+    f7_in = open(file7, 'r')
+    f8_in = open(file8, 'r')
+    f9_in = open(file9, 'r')
+    f10_in = open(file10, 'r')
+    f11_in = open(file11, 'r')
+    f12_in = open(file12, 'r')
+    f13_in = open(file13, 'r')
+    f14_in = open(file14, 'r')
+    f15_in = open(file15, 'r')
+    f16_in = open(file16, 'r')
+    n = 16
     f_out = open(file_out, 'w')
 
     f1 = f1_in.readlines()
     M = float(len(f1)) # num of scores
-    n = 4
     s = np.asmatrix(list(map(float, f1)))
     f2 = f2_in.readlines()
     s = np.vstack([s, list(map(float, f2))])
@@ -50,6 +75,34 @@ def main():
     s = np.vstack([s, list(map(float, f3))])
     f4 = f4_in.readlines()
     s = np.vstack([s, list(map(float, f4))])
+    f5 = f5_in.readlines()
+    s = np.vstack([s, list(map(float, f5))])
+    f6 = f6_in.readlines()
+    s = np.vstack([s, list(map(float, f6))])
+    f7 = f7_in.readlines()
+    s = np.vstack([s, list(map(float, f7))])
+    f8 = f8_in.readlines()
+    s = np.vstack([s, list(map(float, f8))])
+    f9 = f9_in.readlines()
+    s = np.vstack([s, list(map(float, f9))])
+    f10 = f10_in.readlines()
+    s = np.vstack([s, list(map(float, f10))])
+    f11 = f11_in.readlines()
+    s = np.vstack([s, list(map(float, f11))])
+    f12 = f12_in.readlines()
+    s = np.vstack([s, list(map(float, f12))])
+    f13 = f13_in.readlines()
+    s = np.vstack([s, list(map(float, f13))])
+    f14 = f14_in.readlines()
+    s = np.vstack([s, list(map(float, f14))])
+    f15 = f15_in.readlines()
+    s = np.vstack([s, list(map(float, f15))])
+    f16 = f16_in.readlines()
+    s = np.vstack([s, list(map(float, f16))])
+
+
+
+
 
     s = s.T
     x = 2*s-1
@@ -59,6 +112,18 @@ def main():
     x_y[1] = M*0.8598*2-M
     x_y[2] = M*0.8363*2-M
     x_y[3] = M*0.8323*2-M
+    x_y[4] = M*0.8699*2-M
+    x_y[5] = M*0.6696*2-M
+    x_y[6] = M*0.6627*2-M
+    x_y[7] = M*0.5001*2-M
+    x_y[8] = M*0.8700*2-M
+    x_y[9] = M*0.8069*2-M
+    x_y[10] = M*0.8140*2-M
+    x_y[11] = M*0.7952*2-M
+    x_y[12] = M*0.8651*2-M
+    x_y[13] = M*0.8655*2-M
+    x_y[14] = M*0.7872*2-M
+    x_y[15] = M*0.8700*2-M
 
 #    pdb.set_trace()
     
@@ -101,6 +166,18 @@ def main():
     f2_in.close()
     f3_in.close()
     f4_in.close()
+    f5_in.close()
+    f6_in.close()
+    f7_in.close()
+    f8_in.close()
+    f9_in.close()
+    f10_in.close()
+    f11_in.close()
+    f12_in.close()
+    f13_in.close()
+    f14_in.close()
+    f15_in.close()
+    f16_in.close()
 
 if __name__ == '__main__':
     main()

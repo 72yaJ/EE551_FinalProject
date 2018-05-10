@@ -24,7 +24,8 @@ def get_median(data):
 def main():
     
     dataDir = '/home/z/Documents/python/EE627_project/data/data_in_matrixForm/'
-    file_in = dataDir + 'direct_score_result.txt'
+#    file_in = dataDir + 'mf_track_estimate_rightOrder.txt'
+    file_in = dataDir + 'direct_score_result201805101837.txt'
     t = strftime('%Y%m%d%H%M', gmtime())
     title = 'reference_result'+t+'.txt'
     output_file = dataDir + title
